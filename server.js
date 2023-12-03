@@ -14,11 +14,8 @@ const connection = mysql.createConnection(
 
 // Default response for any other request (Not Found)
 connection.connect((err) => {
-  if (err) {
-      console.error('Error connecting to database: ', err);
-      return;
-  }
-  console.log('Connected to database');
-});
+  if (err) {console.error('Error connecting to database: ', err);
+      return;}
+    console.log('Connected to database');});
 
 module.exports = connection;
