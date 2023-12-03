@@ -1,99 +1,18 @@
-const inquirer = require("inquirer");
+const inquirer = require('inquirer')
 const connection = require('./server')
+const { addEmployee, addDepartment, addTitle, addSalary, updEmployeeName, updDepartment, updTitle, updSalary, removeRecord} = require ('./functions')
+const userOptions = ['Add new employee','Add Department','Add Title','Add Salary','Update Employee Name','Update Department','Update Title','Update Salary', 'Remove Record']
 
-
-//MySQL User Data
-require("dotenv").config();
-const user = process.env.DB_USER;
-const password = process.env.DB_PASSWORD;
-
-// Connect to database
-const db = mysql.createConnection(
-  {host: "127.0.0.1", user: user, password: password, database: "employeetracker_db",},
-  console.log(`Connected to the employeetracker_db database.`));
-
-
-
-// Prompt the user for action
-  // Handle user actions based on answers
-  //add inquire statement
-  switch (answers.action) {
-    case "Add Department":
-      connection.query(addNewDept, (err, results) => {
-        if (err) {
-          console.error("Error executing SQL query:", err);
-        } else {
-          console.log("Column added successfully");
-        }
-      });
-      break;
-    case "Add User":
-      connection.query(addNewUser, (err, results) => {
-        if (err) {
-          console.error("Error executing SQL query:", err);
-        } else {
-          console.log("Column added successfully");
-        }
-      });
-      break;
-    case "Add Title":
-      connection.query(addNewTitle, (err, results) => {
-        if (err) {
-          console.error("Error executing SQL query:", err);
-        } else {
-          console.log("Column added successfully");
-        }
-      });
-      break;
-    case "Add Salary":
-      connection.query(addNewSalary, (err, results) => {
-        if (err) {
-          console.error("Error executing SQL query:", err);
-        } else {
-          console.log("Column added successfully");
-        }
-      });
-      break;
-    case "Update Department":
-        connection.query(updDepartment, (err, results) => {
-            if (err) {console.error("Error executing SQL query:", err);
-            } else {console.log("Column added successfully");}});     
-      break;
-    case "Update User":
-        connection.query(updUser, (err, results) => {
-            if (err) {console.error("Error executing SQL query:", err);
-            } else {console.log("Column added successfully");}});
-    break
-    case "Update Title":
-        connection.query(updTitle, (err, results) => {
-            if (err) {
-    console.error("Error executing SQL query:", err);
-            } else {
-              console.log("Column added successfully");
-            }
-          });
-    break;
-    case "Update Salary":
-        connection.query(updSalary, (err, results) => {
-            if (err) {
-              console.error("Error executing SQL query:", err);
-            } else {
-              console.log("Column added successfully");
-}});      break;
-    case "Remove Employee Record":
-        connection.query(removeRecord, (err, results) => {
-            if (err) {
-              console.error("Error executing SQL query:", err);
-            } else {
-              console.log("Column added successfully");      
-              break;
-  }
-  // Close the MySQL connection
-  connection.end();
-});
-
-// Establish the database connection
-connection.connect((err) => {
-  if (err) throw err;
-  console.log("Connected to the database.");
-})});
+//User Prompts
+inquirer.prompt({type: 'list', name: 'Action', messsage: 'Choose an Action', choices: userOptions})
+    .then(((answer) => {switch (answer.action) {
+      case 'Add new employee': addEmployee(); break;
+      case 'Add department': addDepartment(); break;
+      case 'Add title': addTitle(); break;
+      case 'Add salary': addSalary(); break;
+      case 'Update Employee Name': updEmployeeName(); break;
+      case 'Update Department': updDepartment(); break;
+      case 'Update title': updTitle(); break;
+      case 'Update salary': updSalary(); break;
+      case 'Remove Record': removeRecord(); break;
+    }}));
