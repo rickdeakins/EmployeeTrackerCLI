@@ -7,9 +7,6 @@ const userOptions = ['Add new employee','Add Department','Add Title','Add Salary
 inquirer.prompt({type: 'list', name: 'action', messsage: 'Choose an Action', choices: userOptions})
     .then(((answer) => {switch (answer.action) {
       case 'Add new employee': addEmployee(); break;
-      case 'Add department': addDepartment(); break;
-      case 'Add title': addTitle(); break;
-      case 'Add salary': addSalary(); break;
       case 'Update Employee Name': updEmployeeName(); break;
       case 'Update Department': updDepartment(); break;
       case 'Update title': updTitle(); break;
@@ -17,3 +14,4 @@ inquirer.prompt({type: 'list', name: 'action', messsage: 'Choose an Action', cho
       case 'Remove Record': removeRecord(); break;
       case 'View Employees': viewEmployees(); break;
     }}));
+
