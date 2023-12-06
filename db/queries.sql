@@ -12,5 +12,4 @@ ALTER TABLE department ADD ${departmentName} VARCHAR(30);
 INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?);
 
 --Update Employee Name
-INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?)
-
+UPDATE users SET first_name = '${newFirstName}', last_name = '${newLastName}';
