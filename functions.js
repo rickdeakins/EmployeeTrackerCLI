@@ -17,7 +17,7 @@ function addEmployee() {
 
 function updEmployeeName() {
   {
-    const sqlQuery = `UPDATE users SET first_name = '${newFirstName}', last_name = '${newLastName}'`;
+    const sqlQuery = `UPDATE employee SET first_name = '${newFirstName}', last_name = '${newLastName}'`;
     connection.query(sqlQuery, [newFirstName, newLastName], (err, res) => {
       if (err) throw err;
       console.log("Employee added successfully!");
