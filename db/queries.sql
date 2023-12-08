@@ -6,7 +6,7 @@ LEFT JOIN department AS d ON r.department_id = d.id;
 
 -- Modify Department Name
 USE employeetracker_db;
-UPDATE department SET name = ${departmentName} WHERE id = ("id #");
+UPDATE department SET name = ${departmentName} WHERE id = (?);
 
 -- Add Employee
 INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?);
