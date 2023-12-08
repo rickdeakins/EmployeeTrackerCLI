@@ -13,3 +13,7 @@ INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?, ?, 
 
 --Update Employee Name
 UPDATE users SET first_name = '${newFirstName}', last_name = '${newLastName}';
+
+--Update title
+--Update salary
+--Remove record
