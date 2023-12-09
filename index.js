@@ -1,7 +1,6 @@
 const inquirer = require('inquirer')
 const connection = require('./server')
 const { viewEmployees, addEmployee, editEmployee, removeEmployee } = require ('./functions')
-//const userOptions = ['Add new employee','Add Department','Add Title','Add Salary','Update Employee Name','Update Department','Update Title','Update Salary', 'Remove Record']
 
 async function main() {
   while (true) {
@@ -22,8 +21,5 @@ async function showMainMenu() {
     message: 'Choose an action:',
     choices: ['View Employees','Add New Employee','Edit Existing Employee', 'Remove Employee', 'Exit'],
   });return action;}
-
-
-
 
 main();
