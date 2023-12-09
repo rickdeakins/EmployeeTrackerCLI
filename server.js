@@ -1,5 +1,5 @@
 //Global Dependencies
-const mysql = require("mysql2");
+const mysql = require("mysql");
 // const index = require("/Users/rickdeakins/bootcamp/Homework/EmployeeTracker/index.js")
 
 //MySQL User Data
@@ -14,8 +14,7 @@ const connection = mysql.createConnection(
 
 // Default response for any other request (Not Found)
 connection.connect((err) => {
-  if (err) {console.error('Error connecting to database: ', err);
-      return;}
+  if (err) {console.error('Error connecting to database: ', err);return;}
     console.log('Connected to database');});
 
 module.exports = connection;
