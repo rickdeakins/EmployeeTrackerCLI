@@ -6,10 +6,10 @@ async function main() {
   while (true) {
     const action = await showMainMenu();
     switch (action) {
-      case 'View Employees': await viewEmployees(); break;
+      case 'View Employees': await handleViewEmployees(); break;
       case 'Add Employee': await handleAddEmployee(); break;
-      case 'Edit Employee': await editEmployee(); break;
-      case 'Remove Employee': await removeEmployee(); break;
+      case 'Edit Employee': await handleEditEmployee(); break;
+      case 'Remove Employee': await handleRemoveEmployee(); break;
       case 'Exit':console.log('Exiting application. Goodbye!'); 
       process.exit(0); default: console.log('Invalid choice. Please try again.');break;
     }}}
