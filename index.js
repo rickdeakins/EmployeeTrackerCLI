@@ -59,7 +59,6 @@ async function handleAddEmployee() {
         message: 'Enter the manager ID:',
       },
     ];
-  
     return inquirer.prompt(questions);
   }
 
@@ -100,7 +99,6 @@ async function handleEditEmployee() {
         message: 'Enter the revised manager ID:',
       },
     ];
-  
     return inquirer.prompt(questions);
   }  
 
