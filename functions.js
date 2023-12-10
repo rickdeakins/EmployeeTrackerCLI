@@ -14,7 +14,7 @@ function addEmployee() {
 
 function editEmployee(employeeId, revisedDetails) {
     const sqlQuery = `UPDATE employee SET first_name = ?, last_name = ?, role_title = ?, salary = ?, department_name = ?, manager_id = ? WHERE id = ?`;
-    connection.query(sqlQuery, sqlQuery,[revisedDetails.editFirstName, revisedDetails.editLastName, revisedDetails.editRoleTitle, revisedDetails.editSalary, revisedDetails.editDepartmentName, revisedDetails.editManagerId, employeeId]),(err, res) => {
+    connection.query(sqlQuery, [revisedDetails.editFirstName, revisedDetails.editLastName, revisedDetails.editRoleTitle, revisedDetails.editSalary, revisedDetails.editDepartmentName, revisedDetails.editManagerId, employeeId]),(err, res) => {
       if (err) throw err;console.log("Employee added successfully!");}};
 
 function removeEmployee(employeeId) {
