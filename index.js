@@ -22,9 +22,9 @@ async function showMainMenu() {
     choices: ['View Employees','Add New Employee','Edit Existing Employee', 'Remove Employee', 'Exit'],
   });return action;}
 
-  async function handleAddEmployee() {
-    const employeeDetails = await addEmployeeDetails();
-    await addEmployee(employeeDetails.firstName, employeeDetails.lastName, employeeDetails.roleTitle, employeeDetails.salary, employeeDetails.departmentName, employeeDetails.managerId);}
+async function handleAddEmployee() {
+  const employeeDetails = await addEmployeeDetails();
+  await addEmployee(employeeDetails.addFirstName, employeeDetails.addLastName, employeeDetails.addRoleTitle, employeeDetails.addSalary, employeeDetails.addDepartmentName, employeeDetails.addManagerId);}
   
   async function addEmployeeDetails() {
     const questions = [
@@ -63,4 +63,51 @@ async function showMainMenu() {
     return inquirer.prompt(questions);
   }
 
+async function handleEditEmployee() {
+  const employeeDetails = await editEmployeeDetails();
+  await editEmployee(employeeDetails.editFirstName, employeeDetails.editLastName, employeeDetails.editRoleTitle, employeeDetails.editSalary, employeeDetails.editDepartmentName, employeeDetails.editManagerId);}
+
+  async function editEmployeeDetails() {
+    const questions = [
+      {
+        type: 'input',
+        name: 'firstName',
+        message: 'Enter the revised first name:',
+      },
+      {
+        type: 'input',
+        name: 'lastName',
+        message: 'Enter the revised last name:',
+      },
+      {
+        type: 'input',
+        name: 'roleTitle',
+        message: 'Enter the revised role ID:',
+      },
+      {
+        type: 'input',
+        name: 'salary',
+        message: 'Enter the revised salary amount:',
+      },
+      {
+        type: 'input',
+        name: 'departmentName',
+        message: 'Enter the revised department name:',
+      },
+      {
+        type: 'input',
+        name: 'managerId',
+        message: 'Enter the revised manager ID:',
+      },
+    ];
+  
+    return inquirer.prompt(questions);
+  }  
+
+
+
+
+
+
+  
 main();
