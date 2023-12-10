@@ -8,17 +8,18 @@ function viewEmployees() {
 
 // Prompt user for all fields of data
 function addEmployee() {
-    const sqlQuery = `INSERT INTO employee (first_name, last_name, role_id, name, manager_id) VALUES (?, ?, ?, ?)`;
-    connection.query(sqlQuery,[firstName, lastName, roleId, name, managerId],(err, res) => {
+    const sqlQuery = `INSERT INTO employee (first_name, last_name, role_title, salary, department_name, manager_id) VALUES (?, ?, ?, ?, ?, ?)`;
+    connection.query(sqlQuery,[firstName, lastName, roleTitle, salary, department_name, managerId],(err, res) => {
         if (err) throw err;console.log("Employee added successfully!");});}
 
-function editEmployee() {}
-function removeEmployee() {}
+function editEmployee(employeeId, revisedDetails) {
+    const sqlQuery = `UPDATE employee SET first_name = ?, last_name = ?, role_title = ?, salary = ?, department_name = ?, manager_id = ? WHERE id = ?`;
+    connection.query(sqlQuery, sqlQuery,[revisedDetails.editFirstName, revisedDetails.editLastName, revisedDetails.editRoleTitle, revisedDetails.editSalary, revisedDetails.editDepartmentName, revisedDetails.editManagerId, employeeId]),(err, res) => {
+      if (err) throw err;console.log("Employee added successfully!");}};
 
+function removeEmployee(employeeId) {
+  const sqlQuery = `DELETE FROM employee WHERE id = ?`;
+  connection.query(sqlQuery, [employeeId], (err, res) => {
+    if (err) throw err; console.log("Employee removed successfully!");});}
 
-module.exports = {
-  viewEmployees,
-  addEmployee,
-  editEmployee,
-  removeEmployee
-};
+module.exports = { viewEmployees, addEmployee, editEmployee, removeEmployee };
