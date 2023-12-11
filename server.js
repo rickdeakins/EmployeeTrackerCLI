@@ -1,5 +1,5 @@
 //Global Dependencies
-const mysql = require("mysql");
+const mysql = require("mysql2");
 // const index = require("/Users/rickdeakins/bootcamp/Homework/EmployeeTracker/index.js")
 
 //MySQL User Data
