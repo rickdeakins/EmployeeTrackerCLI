@@ -1,15 +1,12 @@
   const inquirer = require("inquirer");
   const connection = require("./server");
-  const {
-    viewEmployees,
-    addEmployee,
-  } = require("./functions");
+  // const { addEmployee } = require("./functions");
   require("console.table");
 
   async function main() {
     const action = await showMainMenu();
     switch (action) {
-      case "View Current Employees":
+      case "View Employees":
         await viewEmployees();
         break;
       case "Add New Employee":
@@ -40,12 +37,24 @@
         "Add New Employee",
         "Add Department Name",
         "Add New Role",
-        "Remove Employee",
         "Exit",
       ],
     });
     return action;
   }
+
+  async function viewEmployees() {
+    connection.query(
+      `SELECT e.id AS employee_id, e.first_name, e.last_name, r.title AS role_title, r.salary, d.department_name, e.manager_id FROM employee e JOIN role r ON e.role_id = r.id JOIN department d ON r.department_id = d.id;`,
+      function (err, data) {
+       console.log("enter callback")
+        if (err) {
+        console.error(err)
+          throw err;}
+        console.table(data);
+        main();
+      }
+    )};
 
   async function handleAddEmployee() {
     const employeeDetails = await addEmployeeDetails();
@@ -75,7 +84,6 @@
         name: "roleTitle",
         message: "Enter the employee role ID:",
       },
-    
       {
         type: "input",
         name: "managerId",
@@ -84,45 +92,20 @@
     ];
     return inquirer.prompt(questions);
   }
+  // Prompt user for all fields of data
+function addEmployee(firstName, lastName, roleId, managerId, main) {
+  const sqlQuery = `INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?)`;
+  connection.query(
+    sqlQuery,
+    [firstName, lastName, roleId, managerId],
+    (err, res) => {
+      if (err) throw err;
+      console.log("Employee added successfully!");
+      main()
+    }
+  );
+}
 
-  async function handleEditEmployee() {
-    const employeeDetails = await editEmployeeDetails();
-    await editEmployee(
-      employeeDetails.editFirstName,
-      employeeDetails.editLastName,
-      employeeDetails.editRoleTitle,
-      employeeDetails.editSalary,
-      employeeDetails.editDepartmentName,
-      employeeDetails.editManagerId
-    );
-  }
-
-  async function editEmployeeDetails() {
-    const questions = [
-      {
-        type: "input",
-        name: "firstName",
-        message: "Enter the revised first name:",
-      },
-      {
-        type: "input",
-        name: "lastName",
-        message: "Enter the revised last name:",
-      },
-    
-      {
-        type: "input",
-        name: "departmentName",
-        message: "Enter the revised department name:",
-      },
-      {
-        type: "input",
-        name: "managerId",
-        message: "Enter the revised manager ID:",
-      },
-    ];
-    return inquirer.prompt(questions);
-  }
 
   async function addDepartment() {
     const questions = [
@@ -178,6 +161,5 @@
       );
     });
   }
-
 
   main();
